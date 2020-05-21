@@ -11,7 +11,6 @@ export function useFetch(url: string, options: RequestInit = {}) {
   const fetchData = async () => {
     try {
       const res = await fetch(url, options);
-      console.log(res);
       const json = await res.json();
       return json;
     } catch (error) {
