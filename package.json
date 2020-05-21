@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,8 +32,23 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "use-fetch",
+  "name": "@nicolastoulemont/use-fetch",
   "author": "Nicolas Toulemont",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolastoulemont/use-fetch.git"
+  },
+  "homepage": "https://github.com/nicolastoulemont/use-fetch",
+  "keywords": [
+    "react",
+    "fetching",
+    "hook",
+    "state-while-revalidate"
+  ],
+  "description": "Basic use-fetch utility hook for state-while-revalidate data fetching",
+  "bugs": {
+    "url": "https://github.com/nicolastoulemont/use-fetch/issues"
+  },
   "module": "dist/use-fetch.esm.js",
   "devDependencies": {
     "@types/react": "^16.9.35",
