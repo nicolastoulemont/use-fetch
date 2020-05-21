@@ -19,6 +19,9 @@ export function useFetch(url: string, options: RequestInit = {}) {
   };
 
   const fetchy = async () => {
+    if (typeof url !== 'string')
+      throw new Error('useFetch requires a URL string');
+
     error && setError(null);
     const hash = sha256
       .create()
