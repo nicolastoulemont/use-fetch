@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { sha256 } from 'js-sha256';
 
 const cache = new Map();
 
 export function useFetch(url: string, options: RequestInit = {}) {
+  const isMounted = useRef(true);
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -14,7 +21,7 @@ export function useFetch(url: string, options: RequestInit = {}) {
       const json = await res.json();
       return json;
     } catch (error) {
-      setError(error);
+      isMounted.current && setError(error);
     }
   };
 
@@ -32,13 +39,15 @@ export function useFetch(url: string, options: RequestInit = {}) {
       setResponse(cache.get(hash));
       const json = await fetchData();
       cache.set(hash, json);
-      setResponse(json);
+      isMounted.current && setResponse(json);
     } else {
       setLoading(true);
       const json = await fetchData();
-      setLoading(false);
       cache.set(hash, json);
-      setResponse(json);
+      if (isMounted.current) {
+        setLoading(false);
+        setResponse(json);
+      }
     }
   };
 
