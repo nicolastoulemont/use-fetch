@@ -37,8 +37,6 @@ export function BasicComponent() {
 }
 ```
 
-[Test in Codesandbox](https://codesandbox.io/s/silly-wave-w26bs)
-
 ## Built with
 
 - [tsdx](https://github.com/jaredpalmer/tsdx)
